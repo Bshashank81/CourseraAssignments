@@ -1,0 +1,44 @@
+Question - Week3 Assignment
+
+Part 1: Complete the Implementation of EfficientDocument
+
+1. Implement processText() in EfficientDocument.java.
+
+This method should make ONE pass through the tokens list and count the number of words, sentences and syllables in the document.
+ It should store these values in the appropriate member variables so that when the method is over, they never have to be re-calculated.
+You should make sure you understand the provided method getTokens, isWord, and the provided first line of code in the processText method.
+
+2. Implement getNumWords, getNumSyllables, and getNumSentences in EfficientDocument.java
+
+Once you have implemented the processText method, the implementations of these three methods is trivial.
+
+You can again use the method testCase in the Document class to test the correctness of your implementation. We've provided a few test cases for you. You should add more.
+
+
+Part 2: Benchmarking
+
+Your next task is to determine and plot how much faster EfficientDocument is than BasicDocument in computing a single Flesch score for a document.
+
+1. Calculate the Big-O running time of your code to compute the Flesch score for BasicDocument and EfficientDocument (including the time taken by processText!) and 
+predict how the running time of calling fleschScore on BasicDocument and EfficientDocument will grow as the document size grows.
+
+2. Open the file DocumentBenchmarking.java, which you can find in the document package. You will be adding code to the main method, and you will find the method getStringFromFile
+ useful for reading a specified number of characters from a text file.
+
+3. Complete the main method so that it prints a table with one column each for the amount of time it takes to create a BasicDocument or an EfficientDocument, respectively, 
+and call fleschScore on it. Your table should look like the following:
+
+NumberOfChars BasicTime EfficientTime
+
+5000 [basic time 1] [efficient time 1]
+
+10000 [basic time 2] [efficient time 2]
+
+15000 [basic time 3] [efficient time 3]
+
+...
+
+Where the first column in the table prints the number of characters in the test, the second column is the amount of time it takes to create a BasicDocument with that many characters and call fleschScore on it,
+ and the third column is the amount of time it takes to create an EfficientDocument with that many characters and call fleschScore on it. In these timing calculations, you should include the time taken by both 
+ constructors (i.e. the time EfficientDocument takes calculating the number of words, syllables and sentences in the document), otherwise it's not a fair comparison at all!
+
