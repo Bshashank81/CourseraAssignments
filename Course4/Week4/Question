@@ -1,0 +1,99 @@
+Question - Week4 Programming Assignment - LinkedList
+
+Part 1: Implement a Linked List
+
+1. Ensure you have the starter code
+
+Be sure you have the starter code you downloaded as part of the first programming assignment on Flesch Score. You should see a package called textgen in that starter code.
+
+To verify everything is setup okay, you can run the "MyLinkedListTester.java" file and you should get JUnit reporting 6/6 tests run with 1 Error and 1 Failure. (This is okay, you'll be fixing it soon!)
+
+2. Open and examine the starter code
+
+In this project, you will write a MyLinkedList class to be your own implementation of an AbstractList. Before you begin coding, you should be comfortable with the principles behind a LinkedList 
+and the notion of extending from AbstractList. For the Java documentation on Abstract Lists, please see here.
+
+Open the starter code for this week by expanding the MOOCTextEditor->src folder to see the package textgen. You will only be focused on MyLinkedList.java and MyLinkedListTester.java for this part of the assignment.
+ You can open these two files by double-clicking on them. (Note that there is a MyLinkedListGrader.java file in the folder which holds the tests we run when grading. You won't be using that file yet.)
+
+Step 1: Implement and test creating a Linked List Object, adding elements, and retrieving elements.
+
+1. B. Author the following methods in MyLinkedList.java:
+
+public MyLinkedList()
+
+This constructor should create the Linked List and setup any instance variables as needed.
+
+public E get(int index)
+
+This method returns the node in the list corresponding to the index. For example, if the list has the elements 6 and 9 (in that order) and you call "get" with index 0, you should get back 6. 
+If the method is called with an invalid index (say -1 or 2 in the example above), you will thrown an IndexOutOfBoundsException.
+
+public boolean add( E element )
+
+This method adds an element to the end of the list. Null elements are not allowed in the list so if someone tries to insert one you should throw a NullPointerException. 
+Be sure to think about what happens when you add an element to an empty list as well as a list with already existing elements. Drawing a picture of the list will help!
+
+1.C. Run existing JUnit Tests by Running MyLinkedListTester
+
+Run "MyLinkedListTester" and if your methods are working, you should get no errors or failures for testGet. The rest of the tests are empty except for testRemove, which will fail. 
+If this bothers you, you can comment out the body of the testRemove method for now (just remember to put it back in the next part). If you have no errors in testGet, your get method method is likely working correctly.
+ You will write tests to make sure your add method is working correctly in the next step.
+
+1.D. Author the "testAddEnd" and "testAddAtIndex" methods in MyLinkedListTester
+
+The tests for "testGet" may not properly stress the add method. To be sure your add method works properly,
+ you should add tests to these two methods.
+ 
+
+
+PART 2 Markov Text Generation
+
+1. Find the starter code
+
+You should see a package called textgen in that starter code.
+
+To verify everything is setup okay, you can run the "MarkovTextGeneratorLoL.java" file and you will see output (including two "null" outputs which we'll be fixing soon!).
+
+2. Open and examine the starter code
+
+Examine the MarkovTextGenerator interface for the key methods:
+
+public void train(String sourceText);
+
+Markov Text Generation depends on an initial source text to mimic. This method takes in String to train the Markov Text Generator.
+
+public String generateText(int numWords);
+
+The goal of Markov Text Generation is to be able to generate text which resembles the source in a reasonable way. The method generateText returns such text as a String of words, the length of which is determined by numWords.
+
+public void retrain(String sourceText);
+
+You may wish to use a Markov Text Generator multiple times with different source text. The method retrain acts just like train,
+ except it removes any existing training that was done previously and trains from scratch on the new sourceText.
+
+Step 1: Implement the train method
+
+You'll notice our MarkovTextGeneratorLoL constructor creates a List of ListNode objects. The ListNode class is authored at the bottom of the MarkovTextGenerationLoL.java file.
+ Each ListNode contains a word and a list of words which follow that word in the source text. We'll be using ListNodes to help us generate text (in the next step).
+ 
+After completing your train method, we recommend you use the toString methods in both MarkovTextGeneratorLoL and ListNode to verify you are producing a reasonable list. 
+For example, if you train your generator on the string above ("hi there hi Leo"), calling toString on the MarkovTextGenerator should produce:
+
+hi: there->Leo->
+
+there: hi->
+
+Leo: hi-> 
+
+
+Step 2: Implement the generateText method
+
+Now that you've trained on text, your next step will be producing text based on the input set.
+We've added 4 words to the output ("hi", "Leo", "hi", "there") so we're done (our while loop would terminate). Our final output would be:
+"hi Leo hi there"
+
+Step 3: Implement the retrain method
+
+Retrain will behave just like train, only you'll need to re-initialize the instance variables, effectively discarding the prior training.
+
