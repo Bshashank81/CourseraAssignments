@@ -1,0 +1,15 @@
+Part 1: Implement the missing methods in BasicDocument.java
+
+1. Implement getNumSentences, getNumWords and getNumSyllables following the comments about how they are supposed to work that you will find in your starter code (the version uploaded June 22, 2016 or later has the most detailed comments). You'll probably also want to implement countSyllables(String) in Document.java, to be called in getNumSyllables.
+
+You must follow the definitions of what constitutes a syllable, word and sentence given in the documentation for each function exactly to pass the graders.
+
+We have provided you will several test cases in main as well as a helper method you can use to write your own tests.
+
+
+
+Part 2: Implement the getFleschScore method in Document.java
+
+1. Fill in the method getFleschScore() in Document.java to calculate the Flesch Score for the text in the document. You should use the following formula, and make calls to the getNumSyllables, getNumWords, and getNumSentences you just implemented.
+
+You should test your code by calculating the Flesch score by hand on some very basic documents and then calling your method from main to make sure it's giving the same output. Or you can go ahead and run our grader before you submit, which you can find in the same package.
