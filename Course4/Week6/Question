@@ -1,0 +1,101 @@
+Question - Week6 Programming Assignment
+
+PART 1 :Spelling Suggestions 
+
+1. Find the starter code
+
+You should see a package called spelling in that starter code. You've worked in this package before.
+
+The .java files we'll be focusing on in this assignment are NearbyWords and SpellingSuggest.
+
+Part 1: Implement letter mutation methods in Nearby Words.
+
+1. A. Review the methods provided:
+
+To help you get started, we've provided you with the following methods. Note that you will not need to deal with capital/lower-case letters, you can assume everything is lower-case.
+
+public NearbyWords(Dictionary dict)
+
+This constructor sets the instance variable dictionary. Our mutation methods need a dictionary to filter by only those mutations which result in real words (this is used heavily in the next assignment - Word Paths).
+
+public List<String> distanceOne(String s, boolean wordsOnly)
+
+This method constructs a list of String which are one mutation away from the parameter String s. It will limit the list of Strings to only real words if the boolean flag wordsOnly is true. It constructs this list by passing the list to the three methods "insertions", "substitutions", and "deletions".
+
+public void substitutions(String s, List<String> currentList, boolean wordsOnly)
+
+This method produces all substitutions of each letter in String s with any letter from the alphabet and adds them to the List currentList (if not already present and not the original word). It also uses the boolean wordsOnly flag along with access to the Dictionary object to select only real words when wordsOnly is true.
+
+1. B. Author the following methods in NearbyWords:
+
+public void insertions(String s, List<String> currentList, boolean wordsOnly)
+
+This method behaves just like substitute above, except it tries to insert any letter in between existing letters (or to the start and end) to create new Strings (which it adds to currentList).
+
+public void deletions(String s, List<String> currentList, boolean wordsOnly)
+
+This method behaves just like substitute above, except it tries to remove any existing letter to create new Strings (which it adds to currentList).
+
+This method allows us to implement the SpellingSuggest Interface and is very similar to the Breadth First Search you performed with AutoComplete last week. 
+In this method, we'll be looking at providing a number of spelling suggestions for a misspelled word. To do this, we'll be using our methods which allow us 
+to look at Strings one mutation (insert, delete, substitute) away. 
+
+
+PART 2 : Practice Programming Assignment: Word Paths 
+
+Word Paths is a game where we'll try to find a path from one word to another with the restriction that we can only make one change at a time (letter permutation, letter insertion, letter deletion) 
+and that whatever change we make, has to result in a real word.
+
+For example, I can create a path from the word "time" to "theme" through 4 changes (or 5 total words including "time" and "theme"):
+
+time -> tie -> tee -> thee -> theme
+
+1. Find the starter code
+
+You should see a package called spelling in that starter code. You've worked in this package before.
+
+The .java files we'll be focusing on in this assignment are WPTree and WordPath.
+
+2. Be sure you have finished the previous assignment on Spelling Suggestions
+
+We'll be using the methods for word mutations in NearbyWords and the principles from spelling suggestions to complete this assignment.
+Word Paths
+1. Familiarize yourself with the starter code
+
+1.a. First, review the public interface:
+
+public interface WordPath
+
+The abstract method in WordPath to override is:
+
+public List<String> findPath(String word1, String word2)
+
+This method will find a path from word1 to word2.
+
+1.b. Second, review the provided code in WPTree
+
+WPTree consists of the public class WPTree which implements WordPath. The methods provided include:
+
+    a no argument constructor which will simply set the root of the tree to be null and will create a NearbyWords object (you need to add this).
+    printQueue is a method which will help print a list of WPTreeNodes. This will be helpful when testing your find path method.
+
+WPTreeNode has been entirely written for you. You should not need to change this class in anyway. A WPTreeNode contains a word, it's parent, and its children.
+
+Review the methods in WPTreeNode as they will be highly useful to you. The methods provided include:
+
+    a constructor which requires a String (the word) and a parent node (null for root). This allows you to create a node while connecting it back to its parent. 
+    (Note, it does not update the list of children for the parent, this needs to be done separately - see addChild method).
+    getWord which returns the node's word
+    addChild which creates a node (using the provided String) and makes it the child of the calling object node. It returns the new node if you need to use it.
+    getChildren returns the list of children for a node
+    buildPathToRoot is an essential method which will let you build a path from the root node to the calling object node.
+    toString is useful for debugging/testing
+
+
+ 1.c. Third, Author the findPath method
+
+The core of this assignment is the creation of the findPath method. findPath will function very similarly to the suggestions method you authored in the prior NearbyWords assignment.
+ The fundamental difference between these two methods is that suggestions simply searched for nearby words, whereas findPath must find, and return, the path to a specific word. 
+ To be able to return the path, we need to have a way of reconstructing how we got to the target word - and we'll do this by creating a tree as we search.
+
+
